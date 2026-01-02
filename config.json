@@ -3,7 +3,7 @@
     "title": "YOUR_STREAM_TITLE",
     "video": "YOUR_VIDEO_LOCATION",
     "thumbnail": "YOUR_THUMBNAIL_LOCATION",
-    "stream_id": "STREAM_ID", #NOT STREAM KEY
+    "stream_id": "STREAM_ID", 
     "hour": 6,
     "minute": 0,
     "tags": ["TAG1","TAG2","TAG3"]
@@ -12,7 +12,7 @@
     "title": "YOUR_STREAM_TITLE",
     "video": "YOUR_VIDEO_LOCATION",
     "thumbnail": "YOUR_THUMBNAIL_LOCATION",
-    "stream_id": "STREAM_ID", #NOT STREAM KEY
+    "stream_id": "STREAM_ID",
     "hour": 7,
     "minute": 0,
     "tags": ["TAG1","TAG2","TAG3"]
@@ -21,7 +21,7 @@
     "title": "YOUR_STREAM_TITLE",
     "video": "YOUR_VIDEO_LOCATION",
     "thumbnail": "YOUR_THUMBNAIL_LOCATION",
-    "stream_id": "STREAM_ID", #NOT STREAM KEY
+    "stream_id": "STREAM_ID",
     "hour": 8,
     "minute": 0,
     "tags": ["TAG1","TAG2","TAG3"]
