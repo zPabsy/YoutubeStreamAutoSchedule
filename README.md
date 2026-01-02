@@ -24,7 +24,7 @@ cd YoutubeStreamAutoSchedule
    
 Install the Google API Library
 ```bash
-pip install --upgrade google-auth google-auth-oauthlib google-api-python-client
+pip install --upgrade google-auth google-auth-oauthlib google-api-python-client --break-system-packages
 ```
 Full tutorial for getting the token on progress
 
