@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import json
 import pytz
@@ -10,13 +12,13 @@ from googleapiclient.http import MediaFileUpload
 
 
 SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
-CLIENT_SECRET_FILE = "/PATH/client_secret.json"
-TOKEN_FILE = "/PATH/token.json"
-CONFIG_FILE = "/PATH/config.json"
+CLIENT_SECRET_FILE = "/root/live/client_secret.json"
+TOKEN_FILE = "/root/live/token.json"
+CONFIG_FILE = "/root/live/config.json"
 
 def authenticate():
     if not os.path.exists(TOKEN_FILE):
-        raise Exception("❌ token.json not found.")
+        raise Exception("âŒ token.json not found.")
     return Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
 def get_utc_time(hour, minute):
@@ -36,10 +38,12 @@ def schedule_stream(youtube, stream):
         body={
             "snippet": {
                 "title": stream["title"],
-                "scheduledStartTime": scheduled_time,
-                "categoryId": "22"
+                "scheduledStartTime": scheduled_time
             },
-            "status": {"privacyStatus": "public"},
+            "status": {
+                "privacyStatus": "public",
+                "selfDeclaredMadeForKids": False
+            },
             "contentDetails": {
                 "enableAutoStart": True,
                 "enableAutoStop": True
@@ -64,7 +68,7 @@ def schedule_stream(youtube, stream):
         ).execute()
     except googleapiclient.errors.HttpError as e:
         if e.resp.status == 429:
-            print("⚠️ Thumbnail limit! Skipping~")
+            print("âš ï¸ Thumbnail limit! Skipping~")
         else:
             raise
 
@@ -85,18 +89,18 @@ def schedule_stream(youtube, stream):
             "snippet": snippet
         }
     ).execute()
-    print(f"✅ Video: {stream['video']}")
+    print(f"âœ… Video: {stream['video']}")
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("index", type=int, help="Index of stream (0–9)")
+    parser.add_argument("index", type=int, help="Index of stream (0â€“9)")
     args = parser.parse_args()
 
     with open(CONFIG_FILE, "r") as f:
         streams = json.load(f)
 
     if args.index < 0 or args.index >= len(streams):
-        raise ValueError("❌ Invalid stream index (must be 0–9)")
+        raise ValueError("âŒ Invalid stream index (must be 0â€“9)")
 
     creds = authenticate()
     youtube = build("youtube", "v3", credentials=creds)
